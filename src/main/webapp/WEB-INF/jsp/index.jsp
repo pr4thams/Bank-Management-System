@@ -14,7 +14,7 @@
 <div id="sample-text-card" class="card col-6 bg-transparent border-0">
     <!-- card body -->
     <div class="card-body">
-        <!-- Crad header -->
+        <!-- Card header -->
         <h1 class="mb-3">Easy-Way Bank</h1>
         <!-- end card header -->
 
@@ -34,8 +34,8 @@
         <!-- end card text -->
         <!-- button wrapper -->
         <div class="button-wrapper d-flex align-items-center">
-            <a href="register.html" class="btn btn-md register" role="button">Register</a>
-            <a href="login.html" class="btn btn-md login" role="button">Login</a>
+            <a href="/register" class="btn btn-md register" role="button">Register</a>
+            <a href="/login" class="btn btn-md login" role="button">Login</a>
         </div>
         <!-- end of button wrapper -->
     </div>

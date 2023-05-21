@@ -14,4 +14,29 @@ public class IndexController {
         System.out.println("In index controller");
         return getIndexPage;
     }
+
+    @GetMapping("/login")
+    public ModelAndView getLogin(){
+        ModelAndView getLoginPage = new ModelAndView("login");
+        System.out.println("In Login page controller");
+        getLoginPage.addObject("PageTitle", "Login");
+        return getLoginPage;
+    }
+
+
+    @GetMapping("/error")
+    public ModelAndView getError(){
+        ModelAndView getErrorPage = new ModelAndView("error");
+        System.out.println("In Error page controller");
+        getErrorPage.addObject("PageTitle", "Error");
+        return getErrorPage;
+    }
+
+    @GetMapping("/verify")
+    public ModelAndView getVerify(){
+        ModelAndView getVerifyPage = new ModelAndView("login");
+        System.out.println("In Error page controller");
+        getVerifyPage.addObject("PageTitle", "Errors");
+        return getVerifyPage;
+    }
 }
