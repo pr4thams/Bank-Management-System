@@ -24,6 +24,22 @@
         </h1>
         <!-- end form header -->
 
+        <%-- Display message --%>
+        <c:if test="${requestScope.passwordMisMatch != null}">
+            <div class="alert alert-danger text-center border border-danger">
+                <b>${requestScope.passwordMisMatch}</b>
+            </div>
+        </c:if>
+        <%-- End of Display message --%>
+
+        <%-- Display message --%>
+        <c:if test="${requestScope.success != null}">
+            <div class="alert alert-success text-center border border-success">
+                <b>${requestScope.success}</b>
+            </div>
+        </c:if>
+        <%-- End of Display message --%>
+
         <!-- Registration Form -->
         <form:form action="/register" class="reg-form" modelAttribute="registerUser">
             <!-- ROW -->
