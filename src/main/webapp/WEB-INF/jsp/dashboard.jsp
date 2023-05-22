@@ -13,7 +13,7 @@
 <body>
 <!-- Main Page Header -->
 <header class="main-page-header mb-3 bg-primary">
-    <!-- Containber -->
+    <!-- Container -->
     <div class="container d-flex align-items-center">
         <!-- company name -->
         <div class="company-name">Easy-Way Bank</div>
@@ -40,7 +40,7 @@
         </a>
         <!-- end of logout -->
     </div>
-    <!-- end of cantainer -->
+    <!-- end of container -->
 </header>
 <!--  End of main page header -->
 
