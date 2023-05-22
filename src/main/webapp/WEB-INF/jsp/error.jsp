@@ -49,7 +49,7 @@
         </p>
         <!-- end of card text -->
         <hr />
-        <a href="login.html" class="btn- btn-sm btn-danger">
+        <a href="/login" class="btn- btn-sm btn-danger">
             <i class="fa fa-arrow-alt-circle-left me-1"></i> Back
         </a>
     </div>
