@@ -2,6 +2,8 @@ package com.demo_bank_v1.DemoBank_v1.repository;
 
 
 import com.demo_bank_v1.DemoBank_v1.models.Account;
+import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,7 +17,15 @@ public interface AccountRepository extends CrudRepository<Account, Integer> {
     @Query(value = "SELECT * FROM accounts WHERE user_id = :user_id", nativeQuery = true)
     List<Account> getUserAccountsId(@Param("user_id")int user_id);
 
-    @Query(value = "SELECT balance FROM accounts WHERE user_id = :user_id", nativeQuery = true)
+    @Query(value = "SELECT sum(balance) FROM accounts WHERE user_id = :user_id", nativeQuery = true)
     BigDecimal getTotalBalance(@Param("user_id")int user_id);
 
+    @Modifying
+    @Query(value = "INSERT INTO accounts(user_id, account_number, account_name, account_type) VALUES" +
+            "(:user_id, :account_number, :account_name, :account_type)", nativeQuery = true)
+    @Transactional
+    void createBankAccount(@Param("user_id") int user_id,
+                           @Param("account_number") String account_number,
+                           @Param("account_name") String account_name,
+                           @Param("account_type") String account_type);
 }
