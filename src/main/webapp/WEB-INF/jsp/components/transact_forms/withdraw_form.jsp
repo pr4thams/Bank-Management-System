@@ -7,7 +7,7 @@
     <!-- card Body -->
     <div class="card-body">
         <!-- withdraw Form -->
-        <form action="" class="withdraw-form">
+        <form action="/transact/withdraw" method="POST" class="withdraw-form">
             <!-- Form Group -->
             <div class="form-group mb-2">
                 <label for=""> Enter Withdrawal Amount</label>
@@ -26,6 +26,11 @@
                 <!-- Select Account Option -->
                 <select name="account_id" class="form-control" id="">
                     <option value="">-- Select Account--</option>
+                    <c:if test="${userAccounts != null}">
+                        <c:forEach items="${userAccounts}" var="selectAccount">
+                            <option value="${selectAccount.account_id}">${selectAccount.account_name}</option>
+                        </c:forEach>
+                    </c:if>
                 </select>
                 <!-- End of Select Account Option -->
             </div>
