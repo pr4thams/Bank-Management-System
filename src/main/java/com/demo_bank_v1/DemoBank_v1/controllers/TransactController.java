@@ -17,6 +17,10 @@ public class TransactController {
     @Autowired
     private AccountRepository accountRepository;
 
+    User user;
+    double currentBalance;
+    double newBalance;
+
     @PostMapping("/deposit")
     public String deposit(@RequestParam("deposit_amount")String depositAmount,
                           @RequestParam("account_id") String accountID,
@@ -30,7 +34,7 @@ public class TransactController {
         }
 
 //        TODO: GET LOGGED IN USER:
-        User user = (User)session.getAttribute("user");
+        user = (User)session.getAttribute("user");
 
 //        TODO: GET CURRENT ACCOUNT BALANCE:
         int acc_id = Integer.parseInt(accountID);
@@ -43,13 +47,70 @@ public class TransactController {
         }
 
 //        TODO: UPDATE BALANCE :
-        double currentBalance = accountRepository.getAccountBalance(user.getUser_id(), acc_id);
-        double newBalance = currentBalance + depositAmountValue;
+        currentBalance = accountRepository.getAccountBalance(user.getUser_id(), acc_id);
+        newBalance = currentBalance + depositAmountValue;
 
 //        Update Account:
         accountRepository.changeAccountBalanceById(newBalance, acc_id);
 
         redirectAttributes.addFlashAttribute("success", "Amount Deposited Successfully!");
+        return "redirect:/app/dashboard";
+    }
+//    END OF DEPOSIT
+
+    @PostMapping("/transfer")
+    public String transfer(@RequestParam("transfer_from") String transfer_from,
+                           @RequestParam("transfer_to") String transfer_to,
+                           @RequestParam("transfer_amount") String transfer_amount,
+                           HttpSession session,
+                           RedirectAttributes redirectAttributes){
+//    Init Error Message Value:
+        String errorMessage;
+
+//    TODO: CHECK FOR EMPTY FIELDS:
+        if (transfer_from.isEmpty() || transfer_to.isEmpty() || transfer_amount.isEmpty()){
+            errorMessage = "The account transferring From and To along with Amount cannot be empty!";
+            redirectAttributes.addFlashAttribute("error", errorMessage);
+            return "redirect:/app/dashboard";
+        }
+
+//    TODO: CONVERT VARIABLES:
+        int transferFromID = Integer.parseInt(transfer_from);
+        int transferToId = Integer.parseInt(transfer_to);
+        double transferAmount = Double.parseDouble(transfer_amount);
+
+//    TODO: CHECK IF TRANSFERRING INTO THE SAME ACCOUNT:
+        if (transferFromID == transferToId){
+            errorMessage = "Cannot Transfer into the same Account, Please select appropriate account to perform Transfer!";
+            redirectAttributes.addFlashAttribute("error", errorMessage);
+            return "redirect:/app/dashboard";
+        }
+
+//    TODO: CHECK FOR 0 (ZERO) VALUES:
+        if (transferAmount == 0){
+            errorMessage = "Cannot Transfer an Amount of 0 (Zero) value, Please enter a value greater than 0 (Zero)!";
+            redirectAttributes.addFlashAttribute("error", errorMessage);
+            return "redirect:/app/dashboard";
+        }
+
+//    TODO: GET LOGGED IN USER:
+        user = (User)session.getAttribute("user");
+
+//    TODO: GET CURRENT BALANCE:
+        double currentBalanceFromAcc = accountRepository.getAccountBalance(user.getUser_id(), transferFromID);
+        double currentBalanceTargetAcc = accountRepository.getAccountBalance(user.getUser_id(), transferToId);
+
+//    TODO: SET NEW BALANCE:
+        double newBalanceFromAcc = currentBalanceFromAcc - transferAmount;
+        double newBalanceTargetAcc = currentBalanceTargetAcc + transferAmount;
+
+//    TODO: CHANGE THE BALANCE OF THE ACCOUNTS TRANSFERRING FROM:
+        accountRepository.changeAccountBalanceById(newBalanceFromAcc, transferFromID);
+
+//    TODO: CHANGE THE BALANCE OF THE TRANSFER INTO ACCOUNT:
+        accountRepository.changeAccountBalanceById(newBalanceTargetAcc, transferToId);
+
+        redirectAttributes.addFlashAttribute("success", "Amount Transferred Successfully!");
         return "redirect:/app/dashboard";
     }
 
