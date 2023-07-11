@@ -1,19 +1,19 @@
-<h1>Easy Way Bank</h1>
+# Easy Way Bank - Simplified Banking
 
-**A simple and secure Banking System made with Spring Boot**
+Your gateway to convenient and secure banking, crafted using Spring Boot.
 
 ## Overview
-- A safe and secure Banking app engraved with all features of a traditional bank App.
-- Has A Clean and elegant UI to interact with, enabling seamless view of user accounts details.
-- Promoting security thorugh Email Verification and Two factor Authorizations.
 
-## Technologies Used:
-- Spring Boot
-- Java
-- HTML
-- CSS
-- MySQL Database
+Easy Way Bank is a robust banking application, encapsulating all the features of traditional banking within an intuitive interface. The app promotes a seamless view of user account details while reinforcing security through email verification and two-factor authorization.
 
-## Future Expansions:
-- Integrating the applications to the cloud through containerization for flexible usage on various platforms and a more secure deployment.
-- Integration of an AI based chatbot to handle basic customer inquiries, provide account information and assist with transactions.
+## Technologies Deployed:
+
+- **Spring Boot**: Enables rapid application development.
+- **Java**: The robust programming language ensuring system stability.
+- **HTML & CSS**: Crafted the intuitive and elegant user interface.
+- **MySQL Database**: Used for reliable data management and storage.
+
+## Planned Enhancements:
+
+- **Cloud Integration**: Plans to containerize the application for flexible usage across various platforms and more secure deployment.
+- **AI Chatbot Integration**: Envisioning the integration of an AI chatbot to handle basic customer inquiries, provide account information, and assist with transactions.
